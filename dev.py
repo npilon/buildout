@@ -193,7 +193,7 @@ def main(args):
     sys.stdout.flush()
     if subprocess.call(
         [sys.executable] +
-        ['setup.py', '-q', 'develop', '-m', '-x', '-d', 'develop-eggs'],
+        ['-m', 'pip', 'install', '-e', '.', '--no-deps', '-t', 'develop-eggs']
         ):
         raise RuntimeError("buildout build failed.")
 
@@ -244,7 +244,7 @@ def parse_args():
                         action='store')
     parser.add_argument('--setuptools-version', help='version of setuptools to install',
                         action='store')
-    parser.add_argument('--no-clean', 
+    parser.add_argument('--no-clean',
         help='not used in the code, find out if still needed in Makefile',
                         action='store_const', const='NO_CLEAN')
 
