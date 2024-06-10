@@ -17,7 +17,7 @@
 version = '2.0.8.dev0'
 
 import os
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
@@ -69,9 +69,8 @@ setup(
     url='https://github.com/buildout/buildout/tree/master/zc.recipe.egg_',
     license = "ZPL 2.1",
 
-    packages = find_packages('src'),
+    packages = find_namespace_packages(where='src/', include=['zc.recipe.egg']),
     package_dir = {'':'src'},
-    namespace_packages = ['zc', 'zc.recipe'],
     install_requires = [
         'zc.buildout >=2.12.0',
         'setuptools'],

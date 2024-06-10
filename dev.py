@@ -213,7 +213,7 @@ def main(args):
         bin_pip = os.path.join('bin', 'pip')
         if subprocess.call(
             [sys.executable] +
-            ['-m', 'pip', 'install', 'coverage'],
+            ['-m', 'pip', '-q', 'install', 'coverage'],
             ):
             raise RuntimeError("coverage install failed.")
 

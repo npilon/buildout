@@ -15,7 +15,7 @@ name = "zc.buildout"
 version = '3.0.2.dev0'
 
 import os
-from setuptools import setup
+from setuptools import setup, find_namespace_packages
 
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
@@ -42,10 +42,9 @@ setup(
     license = "ZPL 2.1",
     keywords = "development build",
     url='http://buildout.org',
-    packages = ['zc', 'zc.buildout'],
+    packages = find_namespace_packages(where='src/', include=['zc.buildout']),
     package_dir = {'': 'src'},
     python_requires = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
-    namespace_packages = ['zc'],
     install_requires = [
         'setuptools>=8.0',
         'pip',
