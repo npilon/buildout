@@ -1106,14 +1106,14 @@ def develop(setup, dest,
         tmp3 = tempfile.mkdtemp('build', dir=dest)
         undo.append(lambda : zc.buildout.rmtree.rmtree(tmp3))
 
-        args = [executable, '-m', 'pip', 'install', '-e', directory, '--no-deps', '-t', tmp3]
+        args = [executable, '-m', 'pip', '-q', 'install', '-e', directory, '--no-deps', '-t', tmp3]
 
         log_level = logger.getEffectiveLevel()
         if log_level <= 0:
             if log_level == 0:
-                del args[2]
+                del args[3]
             else:
-                args[2] == '-v'
+                args[3] == '-v'
         if log_level < logging.DEBUG:
             logger.debug("in: %r\n%s", directory, ' '.join(args))
 
