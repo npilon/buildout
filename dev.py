@@ -179,6 +179,11 @@ def main(args):
     show(package)
     need_restart = need_restart or did_upgrade
 
+    package = 'packaging'
+    did_upgrade = check_upgrade(package)
+    show(package)
+    need_restart = need_restart or did_upgrade
+
     if need_restart:
         print("Restart")
         sys.stdout.flush()

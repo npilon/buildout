@@ -50,6 +50,7 @@ setup(
         'setuptools>=8.0',
         'pip',
         'wheel',
+        'packaging'
     ],
     include_package_data = True,
     entry_points = entry_points,

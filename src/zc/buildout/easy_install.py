@@ -25,7 +25,7 @@ import glob
 import logging
 import os
 import pkg_resources
-from pkg_resources import packaging
+import packaging
 import py_compile
 import re
 import setuptools.archive_util
