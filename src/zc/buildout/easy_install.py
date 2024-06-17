@@ -1106,13 +1106,15 @@ def develop(setup, dest,
         tmp3 = tempfile.mkdtemp('build', dir=dest)
         undo.append(lambda : zc.buildout.rmtree.rmtree(tmp3))
 
-        args = [executable, '-m', 'pip', '-q', 'install', '-e', directory, '--no-deps', '-t', tmp3]
+        args = [executable, '-m', 'pip', '-qq', 'install', '-e', directory, '--no-deps', '-t', tmp3, '--no-use-pep517', '--global-option=-q']
 
         log_level = logger.getEffectiveLevel()
         if log_level <= 0:
             if log_level == 0:
+                del args[-1:]
                 del args[3]
             else:
+                args[-1] = '--global-option=-v'
                 args[3] == '-v'
         if log_level < logging.DEBUG:
             logger.debug("in: %r\n%s", directory, ' '.join(args))
@@ -1666,7 +1668,9 @@ def call_pip_install(spec, dest):
     args = [sys.executable, '-m', 'pip', 'install', '--no-deps', '-t', dest]
     level = logger.getEffectiveLevel()
     if level >= logging.INFO:
-        args.append('-q')
+        args.append('-qq')
+        args.append('--no-use-pep517')
+        args.append('--global-option=-q')
     else:
         args.append('-v')
 

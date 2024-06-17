@@ -193,7 +193,7 @@ def main(args):
     sys.stdout.flush()
     if subprocess.call(
         [sys.executable] +
-        ['-m', 'pip', 'install', '-q', '-e', '.', '--no-deps', '-t', 'develop-eggs']
+        ['-m', 'pip', '-qq', 'install', '--no-use-pep517', '--global-option=-q', '-e', '.', '--no-deps', '-t', 'develop-eggs']
         ):
         raise RuntimeError("buildout build failed.")
 
